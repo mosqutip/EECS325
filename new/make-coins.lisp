@@ -1,0 +1,12 @@
+(defun make-change (x &optional lst)
+  (cond ((null x) (values 0 0 0 0))
+        ((null lst) (values-list (divide-coins x '(25 10 5 1))))
+        (t (values-list (divide-coins x lst)))))
+
+(defun get-coins (x lst)
+  (cond ((null x) nil)
+        ((null lst) nil)
+        (t (let ((l (multiple-value-bind (y z)
+                        (truncate x (car lst))
+                      (list y z))))
+             (cons (car l) (get-coins (cadr l) (cdr lst)))))))
