@@ -4,8 +4,8 @@ the default list (25 10 5 1) if there is no input list.
 |#
 (defun make-change (x &optional lst)
   (cond ((null x) (values 0 0 0 0))
-        ((null lst) (values-list (divide-coins x '(25 10 5 1))))
-        (t (values-list (divide-coins x lst)))))
+        ((null lst) (values-list (get-coins x '(25 10 5 1))))
+        (t (values-list (get-coins x lst)))))
 
 #|
 Recursively call the truncate function, to retrieve both
