@@ -53,6 +53,15 @@ to retrieve the answers.
                       (list y z))))
              (cons (car l) (get-coins (cadr l) (cdr lst)))))))
 
+(defun get-best-coins (x lst &optional lst2)
+  (if (null lst)
+      (reverse lst2)
+    (let* ((current (car lst))
+           (l (multiple-value-bind (y z)
+                  (truncate x current)
+                (list y z))))
+      (get-best-coins (- x (* current (1- (car l)))) (cdr lst) (cons (1- (car l)) lst2)))))
+
 #|
 Get all permutations of a list of coins (excluding a coin of value "1").
 All permutations are needed to check that the solution is the best possible.
